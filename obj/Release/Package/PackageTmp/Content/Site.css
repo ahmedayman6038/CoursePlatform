@@ -1,0 +1,230 @@
+﻿body {
+    font-family: 'Amiri', serif;
+}
+.intro::after {
+    position: absolute;
+    width: 6%;
+    height: 0;
+    content: '';
+    border-bottom: 2px solid #f7631b;
+    margin-top: .70em;
+    margin-left: 1%;
+}
+
+.intro::before {
+    position: absolute;
+    width: 6%;
+    height: 0;
+    content: '';
+    border-bottom: 2px solid #f7631b;
+    margin-top: .70em;
+    margin-left: -7%;
+}
+.course-avl::after {
+    position: absolute;
+    width: 10%;
+    height: 3px;
+    content: '';
+    border-bottom: 3px solid #f7631b;
+    margin-top: .70em;
+    margin-left: 1%;
+}
+.course-avl::before {
+    position: absolute;
+    width: 10%;
+    height: 3px;
+    content: '';
+    border-bottom: 3px solid #f7631b;
+    margin-top: .70em;
+    margin-left: -11%;
+}
+.course-title::after {
+    position: absolute;
+    width: 10%;
+    height: 3px;
+    content: '';
+    border-top: 1px solid #f7631b;
+    border-bottom: 1px solid #f7631b;
+    margin-top: .70em;
+    margin-right: 2%;
+}
+.course-title::before {
+    position: absolute;
+    width: 10%;
+    height: 3px;
+    content: '';
+    border-top: 1px solid #f7631b;
+    border-bottom: 1px solid #f7631b;
+    margin-top: .70em;
+    margin-right: -12%;
+}
+
+.bg-banner {
+    background: url('/Content/img/bg-banner.jpg') center;
+    min-height: 520px;
+}
+.nav-menu>li{
+    float:right !important;
+}
+.nav-menu .padding {
+    padding-top:10px;
+}
+.menu-has-children ul > li >a{
+    float:right;
+}
+.banner-content{
+    /*margin-left:120px;*/
+}
+.search-course-right{
+    margin:auto;
+    width:50%;
+    top:140px;
+    margin-bottom:200px;
+    padding-top:40px;
+    padding-bottom:40px;
+}
+.search-course-right input{
+    direction:rtl;
+}
+.footer-bottom{
+    padding-top:40px;
+}
+.contact{
+    padding-top:50px;
+    padding-bottom:50px;
+}
+.contact-details{
+    padding-right:30px;
+}
+.login {
+    color: white !important;
+    padding: 0px 25px !important;
+}
+.errors {
+    float:right;
+    padding-bottom: 5px;
+    direction: rtl;
+    clear:right;
+    font-weight:bold;
+}
+.message {
+    color: white;
+    text-align: center;
+}
+.pad50{
+    padding-bottom:50px;
+    padding-top:50px;
+}
+.table-responsive {
+    overflow-x: hidden;
+}
+#mobile-nav-toggle {
+    background-color: #f7631b;
+    left: 50%;
+    top:25px;
+    transform: translate(-50%, 0);
+}
+.projects .par:after {
+    content: '';
+    width: 150px;
+    height: 2px;
+    position: relative;
+    top: 25px;
+    left: 0;
+    display: block;
+    margin: auto;
+    background-color: #fed136;
+}
+.projects .last, .blog .last {
+    padding-bottom: 20px;
+}
+
+.projects .btn-primary, .blog .btn-primary {
+    background-color: #fed136;
+    border: none;
+    outline-color: none;
+    box-shadow: none;
+    cursor: pointer;
+    transition: background .3s ease-in-out;
+    padding: 10px 20px;
+}
+
+    .projects .btn-primary:hover, .blog .btn-primary:hover {
+        background-color: #222;
+    }
+.projects .card-img-overlay {
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(0, 0, 0, 0.50);
+    border-radius: 0;
+    overflow: hidden;
+}
+
+    .projects .card-img-overlay .mid {
+        top: 50%;
+        bottom: initial;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .projects .card-img-overlay:hover {
+        opacity: 1;
+    }
+
+.projects .card {
+    border: none;
+    border-radius: 0;
+}
+
+.projects .card-img {
+    border-radius: 0;
+}
+
+.projects .card figure {
+    overflow: hidden;
+    /*border-radius: 7px;*/
+}
+
+    .projects .card figure img {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+        -webkit-transition: .3s ease-in-out;
+        transition: .3s ease-in-out;
+    }
+
+    .projects .card figure:hover img {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+.jq-tab-title{
+    font-size:15px;
+}
+@media (max-width: 767.98px) {
+    .search-course-right{
+        width:85%;
+    }
+    #mobile-nav-toggle {
+        padding: 5px;
+        width: 50px;
+    }
+    #header #logo img {
+        padding-right: 20px;
+    }
+    .banner-content h1 {
+        font-size: 28px;
+    }
+
+    .bg-banner {
+        background-position: 94% 75%;
+    }
+
+    .banner-content p {
+        font-size: 13px !important;
+    }
+
+    .search-course-area .search-course-right .form-wrap .primary-btn {
+        border-radius: 0;
+    }
+}

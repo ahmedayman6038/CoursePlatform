@@ -1,0 +1,122 @@
+﻿@model CoursePlatform.ViewModels.Email
+@{
+    ViewBag.Title = "الرئيسية";
+}
+<!-- start banner Area -->
+<section class="banner-area relative bg-banner" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-between">
+            <div class="banner-content col-lg-12 col-md-12">
+                <h1 class="text-uppercase wow fadeInDown" style="text-align:center;">
+                    البوابة الالكترونية للكورسات العامة
+                </h1>
+                <p class="pt-30 pb-10 intro wow fadeInUp" style="text-align:center;color:white;font-size:15px;">
+                    خدمة التسجيل الالكترونى للكورسات العامة بجامعة القاهرة
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<!-- Start popular-courses Area -->
+<section class="projects learn">
+    <div class="container pt-50 pb-90">
+        <h2 class="text-center mt-4 course-avl">الكورسات المتاحة</h2>
+        <div class="row mt-30" dir="rtl">
+            @foreach (var course in ViewBag.Courses)
+            {
+                <div class="col-md-4 col-sm-12 mt-4">
+                    <h4 class="text-center course-title">@course.Name</h4>
+                    <div class="card bg-dark text-white text-center wow zoomIn">
+                        <figure>
+                            @if (course.Image == null)
+                            {
+                                <img class="card-img" src="@Url.Content("~/Content/img/blank.jpg")" alt="Card image" height="250">
+                            }
+                            else
+                            {
+                                <img class="card-img" src="@Url.Content("~/Uploads/"+course.Image)" alt="Card image" height="250">
+                            }
+                            <a href="/Student/CourseDetails/@course.ID" class="text-light">
+                                <div class="card-img-overlay">
+                                    <div class="mid">
+                                        <h4 class="card-title text-center" style="text-align:center;color:white">اضغط لمعرفة المزيد</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </figure>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+<!-- End popular-courses Area -->
+
+<!-- Start contact-page Area -->
+<section class="contact-page-area">
+    <div class="container">
+        <h2 class="text-center contact">تواصل معنا</h2>
+        <div class="row" dir="rtl" style="padding-bottom:70px;">
+            <div class="col-lg-4 d-flex flex-column address-wrap wow fadeInUp" style="text-align:right">
+
+                <div class="single-contact-address d-flex flex-row">
+                    <div class="icon">
+                        <span class="lnr lnr-home"></span>
+                    </div>
+                    <div class="contact-details">
+                        <h5>جامعة القاهرة ,الجيزة ,مصر</h5>
+                        <p>
+                           مركز الخدمات الالكترونية والمعرفية الكائن بداخل المدينة الجامعية للطلاب بجوار المسرح فوق المطعم
+                        </p>
+                    </div>
+                </div>
+                <div class="single-contact-address d-flex flex-row">
+                    <div class="icon">
+                        <span class="lnr lnr-phone-handset"></span>
+                    </div>
+                    <div class="contact-details">
+                        <h5>0245214562</h5>
+                        <p>السبت - الخميس 9 ص الي 3 م  </p>
+                    </div>
+                </div>
+                <div class="single-contact-address d-flex flex-row">
+                    <div class="icon">
+                        <span class="lnr lnr-envelope"></span>
+                    </div>
+                    <div class="contact-details">
+                        <h5>support@ckes.cu.edu.eg</h5>
+                        <p>ارسل لنا استفسارك فى اى وقت</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 wow fadeInUp">
+                <form class="form-area contact-form text-right" id="myForm" action="/Home/Contact" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-lg-6 form-group">
+                            @Html.EditorFor(m => m.FromName, new { htmlAttributes = new { @class = "common-input mb-20 form-control", @placeholder = "الاسم" } })
+                            @Html.ValidationMessageFor(m => m.FromName, "", new { @class = "text-danger errors", @style = "margin-top:-15px;" })
+                            @Html.EditorFor(m => m.FromEmail, new { htmlAttributes = new { @class = "common-input mb-20 form-control", @placeholder = "البريد الالكترونى" } })
+                            @Html.ValidationMessageFor(m => m.FromEmail, "", new { @class = "text-danger errors", @style = "margin-top:-15px;" })
+                            @Html.EditorFor(m => m.Title, new { htmlAttributes = new { @class = "common-input mb-20 form-control", @placeholder = "عنوان الرسالة" } })
+                            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger errors", @style = "margin-top:-15px;" })
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            @Html.TextAreaFor(m => m.Message, new { @class = "common-input form-control", @placeholder = "الرسالة" })
+                            @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger errors", @style = "margin-top:5px;" })
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="alert alert-success alert-msg" style="display:none" role="alert"></div>
+                            <button type="submit" class="genric-btn primary submit-btn" style="float: right;">ارسال</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End contact-page Area -->

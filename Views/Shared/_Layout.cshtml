@@ -1,0 +1,71 @@
+﻿@using CoursePlatform.Attributes
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amiri" rel="stylesheet">
+    @Styles.Render("~/Theme/css")
+
+</head>
+<body ontouchstart="">
+    <header id="header" id="home">
+        <div class="container main-menu">
+            <div class="row align-items-center justify-content-between d-flex">
+                <div id="logo" class="animated fadeInLeft">
+                    <a href="/"><img src="~/Content/img/logo.png" alt="" title="" /></a>
+                </div>
+
+                <nav id="nav-menu-container" style="float:right">
+                    <ul class="nav-menu">
+                        <li><a href="/Home" class="padding" style="font-size:18px">الرئيسية</a></li>
+                        @if (Session["UserId"] != null && Session["UserType"].ToString() == Enum.GetName(typeof(Role), 1))
+                        {
+                            <li><a href="/Home" class="padding" style="font-size:14px">@Session["UserName"]</a></li>
+                            <li><a href="/Account/Logout" class="primary-btn text-uppercase login animated fadeIn" style="font-size:14px">تسجيل الخروج</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="/Account/Login" class="primary-btn text-uppercase login animated fadeIn" style="font-size:14px">دخول الطلاب</a></li>
+                            <li><a href="/Dashboard" class="primary-btn text-uppercase login animated fadeIn" style="font-size:14px">دخول لغير الطلاب</a></li>
+                        }
+
+                    </ul>
+                </nav><!-- #nav-menu-container -->
+                <div id="logo" class="animated fadeInRight">
+                    <a href="/"><img src="~/Content/img/culogo.png" alt="" title="" /></a>
+                </div>
+            </div>
+        </div>
+    </header><!-- #header -->
+    <div>
+        @RenderBody()
+
+    </div>
+
+    <!-- start footer Area -->
+    <footer class="footer-area" style="padding:33px 0px">
+        <div class="container">
+            <div class="footer-bottom align-items-center justify-content-between text-center">
+                <p class="text-center" style="color: white;font-size: 15px;">
+                    &copy; مركز الخدمات الالكترونية والمعرفية @DateTime.Now.Year
+                </p>
+
+            </div>
+        </div>
+    </footer>
+    <!-- End footer Area -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/theme")
+    @RenderSection("scripts", required: false)
+    <script>
+        new WOW().init();
+    </script>
+</body>
+</html>

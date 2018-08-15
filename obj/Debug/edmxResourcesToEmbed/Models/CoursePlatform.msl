@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CoursePlatformModelStoreContainer" CdmEntityContainer="CoursePlatformEntities">
+    <EntitySetMapping Name="CP_Course">
+      <EntityTypeMapping TypeName="CoursePlatformModel.CP_Course">
+        <MappingFragment StoreEntitySet="CP_Course">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="CreatorID" ColumnName="CreatorID" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="ModifiedID" ColumnName="ModifiedID" />
+          <ScalarProperty Name="ModficationDate" ColumnName="ModficationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CP_Duration">
+      <EntityTypeMapping TypeName="CoursePlatformModel.CP_Duration">
+        <MappingFragment StoreEntitySet="CP_Duration">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="MinCapacity" ColumnName="MinCapacity" />
+          <ScalarProperty Name="MaxCapacity" ColumnName="MaxCapacity" />
+          <ScalarProperty Name="NumberRolled" ColumnName="NumberRolled" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreatorID" ColumnName="CreatorID" />
+          <ScalarProperty Name="TerminatorID" ColumnName="TerminatorID" />
+          <ScalarProperty Name="SerialFrom" ColumnName="SerialFrom" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="ModifiedID" ColumnName="ModifiedID" />
+          <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CP_Gender">
+      <EntityTypeMapping TypeName="CoursePlatformModel.CP_Gender">
+        <MappingFragment StoreEntitySet="CP_Gender">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CP_RegisteredCourse">
+      <EntityTypeMapping TypeName="CoursePlatformModel.CP_RegisteredCourse">
+        <MappingFragment StoreEntitySet="CP_RegisteredCourse">
+          <ScalarProperty Name="RegisteredID" ColumnName="RegisteredID" />
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="DurationID" ColumnName="DurationID" />
+          <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CP_Registration">
+      <EntityTypeMapping TypeName="CoursePlatformModel.CP_Registration">
+        <MappingFragment StoreEntitySet="CP_Registration">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StudentCode" ColumnName="StudentCode" />
+          <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
+          <ScalarProperty Name="NationalID" ColumnName="NationalID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ActivationStatus" ColumnName="ActivationStatus" />
+          <ScalarProperty Name="LevelCode" ColumnName="LevelCode" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="StudentFaculty" ColumnName="StudentFaculty" />
+          <ScalarProperty Name="StudentAddress" ColumnName="StudentAddress" />
+          <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
+          <ScalarProperty Name="StudentSection" ColumnName="StudentSection" />
+          <ScalarProperty Name="LevelName" ColumnName="LevelName" />
+          <ScalarProperty Name="UniversityName" ColumnName="UniversityName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CP_Result">
+      <EntityTypeMapping TypeName="CoursePlatformModel.CP_Result">
+        <MappingFragment StoreEntitySet="CP_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CP_Student">
+      <EntityTypeMapping TypeName="CoursePlatformModel.CP_Student">
+        <MappingFragment StoreEntitySet="CP_Student">
+          <ScalarProperty Name="StudentCode" ColumnName="StudentCode" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="StudentFaculty" ColumnName="StudentFaculty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CP_User">
+      <EntityTypeMapping TypeName="CoursePlatformModel.CP_User">
+        <MappingFragment StoreEntitySet="CP_User">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CoursePrivilege" ColumnName="CoursePrivilege" />
+          <ScalarProperty Name="CreatorID" ColumnName="CreatorID" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="ModifiedID" ColumnName="ModifiedID" />
+          <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

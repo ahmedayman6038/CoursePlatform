@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "تحميل النتيجة";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div id="page-wrapper">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">تحميل</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    النتيجة
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form action="/Course/PrintResult/@ViewBag.CourseId" method="post">
+                                <div class="form-group">
+                                    <label>الفترة</label>
+                                    @Html.DropDownList("durid", null, "اختر الفترة", htmlAttributes: new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    <label>الكلية</label>
+                                    <select name="fname" id="fname" class="form-control">
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">تحميل</button>
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#fname").empty();
+            $("#fname").append('<option value>اختر الكلية</option>');
+            $("#durid").change(function () {
+                var selectedVal = $(this).find(':selected').val();
+                var selectedText = $(this).find(':selected').text();
+                var courseId = @ViewBag.CourseId;
+                if (selectedVal != 0) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/Course/GetFacultyNames/' + courseId + '?durid=' + selectedVal,
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.length > 0) {
+                                $("#fname").empty();
+                                for (var i = 0; i < data.length; i++) {
+                                    $("#fname").append('<option value="' + data[i] + '">' + data[i] + '</option>');
+                                }
+                            } else {
+                                $("#fname").empty();
+                                $("#fname").append('<option value>لا يوجد بيانات</option>');
+                            }
+                        },
+                        complete: function () {
+
+                        },
+                        error: function () {
+                            alert("Error");
+                        }
+                    });
+                } else {
+                    $("#fname").empty();
+                    $("#fname").append('<option value>اختر الكلية</option>');
+                }
+
+            });
+        });
+    </script>
+
+}

@@ -1,0 +1,84 @@
+﻿@model CoursePlatform.ViewModels.Duration
+@{
+    ViewBag.Title = "تعديل";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div id="page-wrapper">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">تعديل</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    الفترة
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(model => model.DurationId)
+                                @Html.HiddenFor(model => model.CourseId)
+                                @Html.HiddenFor(model => model.NumberRolled)
+                                @Html.HiddenFor(model => model.CreatorId)
+                                @Html.HiddenFor(model => model.CreationDate)
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.FromDate)
+                                    @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ToDate)
+                                    @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MinCapacity)
+                                    @Html.EditorFor(model => model.MinCapacity, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MinCapacity, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MaxCapacity)
+                                    @Html.EditorFor(model => model.MaxCapacity, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MaxCapacity, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SerialFrom)
+                                    @Html.EditorFor(model => model.SerialFrom, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.SerialFrom, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Activate)
+                                    @Html.EditorFor(model => model.Activate, new { htmlAttributes = new { @class = "" } })
+                                    @Html.ValidationMessageFor(model => model.Activate, "", new { @class = "text-danger" })
+
+                                </div>
+                                <span class="errors text-danger" style="display:block;padding-bottom:15px">
+                                    @ViewBag.ModelErrors
+                                </span>
+                                <button type="submit" class="btn btn-primary btn-block">تعديل</button>
+                            }
+                        </div>
+
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+
+
+

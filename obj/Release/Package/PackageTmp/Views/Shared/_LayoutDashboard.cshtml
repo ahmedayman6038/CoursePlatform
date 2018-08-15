@@ -1,0 +1,191 @@
+﻿@using CoursePlatform.Models;
+@using CoursePlatform.Attributes;
+@{
+
+    CoursePlatformEntities db = new CoursePlatformEntities();
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Dashboard/css")
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        .table-responsive {
+            overflow-x: hidden;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Dashboard">لوحة الادارة </a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right" style="float:left !important">
+
+
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        مرحبا @Session["UserName"] <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="/Dashboard/Logout"><i class="fa fa-sign-out fa-fw"></i> تسجيل خروج</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="بحث...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        @if (Session["UserType"].ToString() == Enum.GetName(typeof(Role), 2))
+                        {
+                            var courses = db.CP_Course.ToList();
+                            <li>
+                                <a href="/Dashboard/Index"><i class="fa fa-dashboard fa-fw"></i> لوحة التحكم</a>
+                            </li>
+                            <li>
+                                <a href="/Course/Index"><i class="fa fa-book fa-fw"></i> الكورسات</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-registered fa-fw"></i> تسجيلات الكورسات<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    @foreach (var course in courses)
+                                    {
+                                        <li>
+                                            <a href="/Course/RegisteredStudents/@course.ID">@course.Name</a>
+                                        </li>
+                                    }
+
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-clock-o fa-fw"></i> فترات الكورسات<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    @foreach (var course in courses)
+                                    {
+                                        <li>
+                                            <a href="/Duration/Index/@course.ID">@course.Name</a>
+                                        </li>
+                                    }
+
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-file fa-fw"></i> تسجيل نتيجة الكورسات<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    @foreach (var course in courses)
+                                    {
+                                        <li>
+                                            <a href="/Course/ResultRegistration/@course.ID">@course.Name</a>
+                                        </li>
+                                    }
+
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-print fa-fw"></i> تحميل نتيجة الكورسات<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    @foreach (var course in courses)
+                                    {
+                                        <li>
+                                            <a href="/Course/PrintResult/@course.ID">@course.Name</a>
+                                        </li>
+                                    }
+
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+
+                            <li>
+                                <a href="/User/Index"><i class="fa fa-users fa-fw"></i> المستخدمين</a>
+                            </li>
+                        }
+                        else
+                        {
+                            var courseId = Int32.Parse(Session["CourseId"].ToString());
+                            var course = db.CP_Course.Find(courseId);
+                            <li>
+                                <a href="/Course/RegisteredStudents/@course.ID"><i class="fa fa-registered fa-fw"></i> تسجيلات @course.Name</a>
+                            </li>
+
+                            <li>
+                                <a href="/Duration/Index/@course.ID"><i class="fa fa-clock-o fa-fw"></i> فترات @course.Name</a>
+                            </li>
+
+                            <li>
+                                <a href="/Course/ResultRegistration/@course.ID"><i class="fa fa-file fa-fw"></i> تسجيل نتيجة @course.Name</a>
+                            </li>
+
+                            <li>
+                                <a href="/Course/PrintResult/@course.ID"><i class="fa fa-print fa-fw"></i> تحميل نتيجة @course.Name</a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        @RenderBody()
+
+
+    </div>
+    <!-- /#wrapper -->
+
+    @Scripts.Render("~/bundles/jquery2")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/dashboard")
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>
+

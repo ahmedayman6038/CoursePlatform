@@ -1,0 +1,112 @@
+﻿@model IEnumerable<CoursePlatform.ViewModels.Course>
+@{
+    ViewBag.Title = "الكورسات";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">الكورسات</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h4>@Html.ActionLink("اضافة كورس", "Create")</h4>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    الكورسات
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.CourseName)</th>
+                                    <th>@Html.DisplayNameFor(model => model.GenderAllowed)</th>
+                                    <th>خيارات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+                                    <tr class="odd gradeX">
+                                        <td>@Html.DisplayFor(modelItem => item.CourseName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.GenderName)</td>
+                                        <th>
+                                            @Html.ActionLink("تعديل", "Edit", new { id = item.CourseId }) |
+                                            @Html.ActionLink("تفاصيل", "Details", new { id = item.CourseId }) |
+                                            <form action="/Course/Delete/@item.CourseId" id="DeleteForm-@item.CourseId" style="display:inline;" method="post">
+                                                @Html.AntiForgeryToken()
+                                                <a href="javascript:{}" 
+                                                   @if(item.DurationsCount > 0)
+                                                   {
+                                                       @: onclick="alert('لايمكن حذف هذا الكورس لوجود فترات مسجلة بة')"
+                                                   }
+                                                   else
+                                                   {
+                                                       @: onclick="if(confirm('هل تريد حذف هذا العنصر؟')){document.getElementById('DeleteForm-@item.CourseId').submit();}else{return false;}"
+
+                                                   }
+                                                   >حذف</a>
+                                            </form>
+
+                                        </th>
+                                    </tr>
+
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable({
+                "oLanguage": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يعثر على أية سجلات",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "ابحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                }
+
+            });
+
+        });
+    </script>
+
+}
+

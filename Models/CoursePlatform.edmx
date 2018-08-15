@@ -1,0 +1,845 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CoursePlatformModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CP_Course">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gender" Type="int" Nullable="false" />
+          <Property Name="Details" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar" MaxLength="150" />
+          <Property Name="CreatorID" Type="int" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedID" Type="int" />
+          <Property Name="ModficationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CP_Duration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromDate" Type="date" Nullable="false" />
+          <Property Name="ToDate" Type="date" Nullable="false" />
+          <Property Name="CourseID" Type="int" Nullable="false" />
+          <Property Name="MinCapacity" Type="int" />
+          <Property Name="MaxCapacity" Type="int" />
+          <Property Name="NumberRolled" Type="int" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="CreatorID" Type="int" Nullable="false" />
+          <Property Name="TerminatorID" Type="int" />
+          <Property Name="SerialFrom" Type="int" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedID" Type="int" />
+          <Property Name="ModificationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CP_Gender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CP_RegisteredCourse">
+          <Key>
+            <PropertyRef Name="RegisteredID" />
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="RegisteredID" Type="int" Nullable="false" />
+          <Property Name="CourseID" Type="int" Nullable="false" />
+          <Property Name="DurationID" Type="int" Nullable="false" />
+          <Property Name="ResultID" Type="int" />
+          <Property Name="SerialNumber" Type="int" />
+        </EntityType>
+        <EntityType Name="CP_Registration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentCode" Type="nvarchar" MaxLength="15" />
+          <Property Name="StudentEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="NationalID" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="150" />
+          <Property Name="ActivationStatus" Type="bit" Nullable="false" />
+          <Property Name="LevelCode" Type="nchar" MaxLength="2" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="15" />
+          <Property Name="StudentName" Type="nvarchar" MaxLength="100" />
+          <Property Name="StudentFaculty" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudentAddress" Type="nvarchar" MaxLength="150" />
+          <Property Name="TelephoneNumber" Type="nvarchar" MaxLength="15" />
+          <Property Name="StudentSection" Type="nvarchar" MaxLength="50" />
+          <Property Name="LevelName" Type="nvarchar" MaxLength="30" />
+          <Property Name="UniversityName" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="CP_Result">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CP_Student">
+          <Key>
+            <PropertyRef Name="StudentCode" />
+          </Key>
+          <Property Name="StudentCode" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="StudentName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudentFaculty" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CP_User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="CoursePrivilege" Type="int" />
+          <Property Name="CreatorID" Type="int" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedID" Type="int" />
+          <Property Name="ModificationDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Course_Gender">
+          <End Role="CP_Gender" Type="Self.CP_Gender" Multiplicity="1" />
+          <End Role="CP_Course" Type="Self.CP_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_Course">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_User">
+          <End Role="CP_User" Type="Self.CP_User" Multiplicity="1" />
+          <End Role="CP_Course" Type="Self.CP_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_Course">
+              <PropertyRef Name="CreatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_User1">
+          <End Role="CP_User" Type="Self.CP_User" Multiplicity="0..1" />
+          <End Role="CP_Course" Type="Self.CP_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_Course">
+              <PropertyRef Name="ModifiedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Duration_Course">
+          <End Role="CP_Course" Type="Self.CP_Course" Multiplicity="1" />
+          <End Role="CP_Duration" Type="Self.CP_Duration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_Duration">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Duration_User">
+          <End Role="CP_User" Type="Self.CP_User" Multiplicity="1" />
+          <End Role="CP_Duration" Type="Self.CP_Duration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_Duration">
+              <PropertyRef Name="CreatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Duration_User1">
+          <End Role="CP_User" Type="Self.CP_User" Multiplicity="0..1" />
+          <End Role="CP_Duration" Type="Self.CP_Duration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_Duration">
+              <PropertyRef Name="TerminatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Duration_User2">
+          <End Role="CP_User" Type="Self.CP_User" Multiplicity="0..1" />
+          <End Role="CP_Duration" Type="Self.CP_Duration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_Duration">
+              <PropertyRef Name="ModifiedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredCourse_Course">
+          <End Role="CP_Course" Type="Self.CP_Course" Multiplicity="1" />
+          <End Role="CP_RegisteredCourse" Type="Self.CP_RegisteredCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_RegisteredCourse">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredCourse_Duration">
+          <End Role="CP_Duration" Type="Self.CP_Duration" Multiplicity="1" />
+          <End Role="CP_RegisteredCourse" Type="Self.CP_RegisteredCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_Duration">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_RegisteredCourse">
+              <PropertyRef Name="DurationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredCourse_Registration">
+          <End Role="CP_Registration" Type="Self.CP_Registration" Multiplicity="1" />
+          <End Role="CP_RegisteredCourse" Type="Self.CP_RegisteredCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_Registration">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_RegisteredCourse">
+              <PropertyRef Name="RegisteredID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredCourse_Result">
+          <End Role="CP_Result" Type="Self.CP_Result" Multiplicity="0..1" />
+          <End Role="CP_RegisteredCourse" Type="Self.CP_RegisteredCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_Result">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_RegisteredCourse">
+              <PropertyRef Name="ResultID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Course">
+          <End Role="CP_Course" Type="Self.CP_Course" Multiplicity="0..1" />
+          <End Role="CP_User" Type="Self.CP_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_User">
+              <PropertyRef Name="CoursePrivilege" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_User">
+          <End Role="CP_User" Type="Self.CP_User" Multiplicity="0..1" />
+          <End Role="CP_User1" Type="Self.CP_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_User1">
+              <PropertyRef Name="CreatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_User1">
+          <End Role="CP_User" Type="Self.CP_User" Multiplicity="0..1" />
+          <End Role="CP_User1" Type="Self.CP_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_User1">
+              <PropertyRef Name="ModifiedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CoursePlatformModelStoreContainer">
+          <EntitySet Name="CP_Course" EntityType="Self.CP_Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CP_Duration" EntityType="Self.CP_Duration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CP_Gender" EntityType="Self.CP_Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CP_RegisteredCourse" EntityType="Self.CP_RegisteredCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CP_Registration" EntityType="Self.CP_Registration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CP_Result" EntityType="Self.CP_Result" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CP_Student" EntityType="Self.CP_Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CP_User" EntityType="Self.CP_User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Course_Gender" Association="Self.FK_Course_Gender">
+            <End Role="CP_Gender" EntitySet="CP_Gender" />
+            <End Role="CP_Course" EntitySet="CP_Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_User" Association="Self.FK_Course_User">
+            <End Role="CP_User" EntitySet="CP_User" />
+            <End Role="CP_Course" EntitySet="CP_Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_User1" Association="Self.FK_Course_User1">
+            <End Role="CP_User" EntitySet="CP_User" />
+            <End Role="CP_Course" EntitySet="CP_Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Duration_Course" Association="Self.FK_Duration_Course">
+            <End Role="CP_Course" EntitySet="CP_Course" />
+            <End Role="CP_Duration" EntitySet="CP_Duration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Duration_User" Association="Self.FK_Duration_User">
+            <End Role="CP_User" EntitySet="CP_User" />
+            <End Role="CP_Duration" EntitySet="CP_Duration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Duration_User1" Association="Self.FK_Duration_User1">
+            <End Role="CP_User" EntitySet="CP_User" />
+            <End Role="CP_Duration" EntitySet="CP_Duration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Duration_User2" Association="Self.FK_Duration_User2">
+            <End Role="CP_User" EntitySet="CP_User" />
+            <End Role="CP_Duration" EntitySet="CP_Duration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredCourse_Course" Association="Self.FK_RegisteredCourse_Course">
+            <End Role="CP_Course" EntitySet="CP_Course" />
+            <End Role="CP_RegisteredCourse" EntitySet="CP_RegisteredCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredCourse_Duration" Association="Self.FK_RegisteredCourse_Duration">
+            <End Role="CP_Duration" EntitySet="CP_Duration" />
+            <End Role="CP_RegisteredCourse" EntitySet="CP_RegisteredCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredCourse_Registration" Association="Self.FK_RegisteredCourse_Registration">
+            <End Role="CP_Registration" EntitySet="CP_Registration" />
+            <End Role="CP_RegisteredCourse" EntitySet="CP_RegisteredCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredCourse_Result" Association="Self.FK_RegisteredCourse_Result">
+            <End Role="CP_Result" EntitySet="CP_Result" />
+            <End Role="CP_RegisteredCourse" EntitySet="CP_RegisteredCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Course" Association="Self.FK_User_Course">
+            <End Role="CP_Course" EntitySet="CP_Course" />
+            <End Role="CP_User" EntitySet="CP_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_User" Association="Self.FK_User_User">
+            <End Role="CP_User" EntitySet="CP_User" />
+            <End Role="CP_User1" EntitySet="CP_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_User1" Association="Self.FK_User_User1">
+            <End Role="CP_User" EntitySet="CP_User" />
+            <End Role="CP_User1" EntitySet="CP_User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CoursePlatformModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CP_Course">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="Int32" Nullable="false" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CreatorID" Type="Int32" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedID" Type="Int32" />
+          <Property Name="ModficationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CP_Gender" Relationship="Self.FK_Course_Gender" FromRole="CP_Course" ToRole="CP_Gender" />
+          <NavigationProperty Name="CP_User" Relationship="Self.FK_Course_User" FromRole="CP_Course" ToRole="CP_User" />
+          <NavigationProperty Name="CP_User1" Relationship="Self.FK_Course_User1" FromRole="CP_Course" ToRole="CP_User" />
+          <NavigationProperty Name="CP_Duration" Relationship="Self.FK_Duration_Course" FromRole="CP_Course" ToRole="CP_Duration" />
+          <NavigationProperty Name="CP_RegisteredCourse" Relationship="Self.FK_RegisteredCourse_Course" FromRole="CP_Course" ToRole="CP_RegisteredCourse" />
+          <NavigationProperty Name="CP_User2" Relationship="Self.FK_User_Course" FromRole="CP_Course" ToRole="CP_User" />
+        </EntityType>
+        <EntityType Name="CP_Duration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CourseID" Type="Int32" Nullable="false" />
+          <Property Name="MinCapacity" Type="Int32" />
+          <Property Name="MaxCapacity" Type="Int32" />
+          <Property Name="NumberRolled" Type="Int32" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="CreatorID" Type="Int32" Nullable="false" />
+          <Property Name="TerminatorID" Type="Int32" />
+          <Property Name="SerialFrom" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedID" Type="Int32" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CP_Course" Relationship="Self.FK_Duration_Course" FromRole="CP_Duration" ToRole="CP_Course" />
+          <NavigationProperty Name="CP_User" Relationship="Self.FK_Duration_User" FromRole="CP_Duration" ToRole="CP_User" />
+          <NavigationProperty Name="CP_User1" Relationship="Self.FK_Duration_User1" FromRole="CP_Duration" ToRole="CP_User" />
+          <NavigationProperty Name="CP_User2" Relationship="Self.FK_Duration_User2" FromRole="CP_Duration" ToRole="CP_User" />
+          <NavigationProperty Name="CP_RegisteredCourse" Relationship="Self.FK_RegisteredCourse_Duration" FromRole="CP_Duration" ToRole="CP_RegisteredCourse" />
+        </EntityType>
+        <EntityType Name="CP_Gender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CP_Course" Relationship="Self.FK_Course_Gender" FromRole="CP_Gender" ToRole="CP_Course" />
+        </EntityType>
+        <EntityType Name="CP_RegisteredCourse">
+          <Key>
+            <PropertyRef Name="RegisteredID" />
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="RegisteredID" Type="Int32" Nullable="false" />
+          <Property Name="CourseID" Type="Int32" Nullable="false" />
+          <Property Name="DurationID" Type="Int32" Nullable="false" />
+          <Property Name="ResultID" Type="Int32" />
+          <Property Name="SerialNumber" Type="Int32" />
+          <NavigationProperty Name="CP_Course" Relationship="Self.FK_RegisteredCourse_Course" FromRole="CP_RegisteredCourse" ToRole="CP_Course" />
+          <NavigationProperty Name="CP_Duration" Relationship="Self.FK_RegisteredCourse_Duration" FromRole="CP_RegisteredCourse" ToRole="CP_Duration" />
+          <NavigationProperty Name="CP_Registration" Relationship="Self.FK_RegisteredCourse_Registration" FromRole="CP_RegisteredCourse" ToRole="CP_Registration" />
+          <NavigationProperty Name="CP_Result" Relationship="Self.FK_RegisteredCourse_Result" FromRole="CP_RegisteredCourse" ToRole="CP_Result" />
+        </EntityType>
+        <EntityType Name="CP_Registration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="StudentEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NationalID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ActivationStatus" Type="Boolean" Nullable="false" />
+          <Property Name="LevelCode" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="StudentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StudentFaculty" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="StudentSection" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LevelName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="UniversityName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CP_RegisteredCourse" Relationship="Self.FK_RegisteredCourse_Registration" FromRole="CP_Registration" ToRole="CP_RegisteredCourse" />
+        </EntityType>
+        <EntityType Name="CP_Result">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CP_RegisteredCourse" Relationship="Self.FK_RegisteredCourse_Result" FromRole="CP_Result" ToRole="CP_RegisteredCourse" />
+        </EntityType>
+        <EntityType Name="CP_Student">
+          <Key>
+            <PropertyRef Name="StudentCode" />
+          </Key>
+          <Property Name="StudentCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StudentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentFaculty" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CP_User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CoursePrivilege" Type="Int32" />
+          <Property Name="CreatorID" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedID" Type="Int32" />
+          <Property Name="ModificationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CP_Course" Relationship="Self.FK_Course_User" FromRole="CP_User" ToRole="CP_Course" />
+          <NavigationProperty Name="CP_Course1" Relationship="Self.FK_Course_User1" FromRole="CP_User" ToRole="CP_Course" />
+          <NavigationProperty Name="CP_Course2" Relationship="Self.FK_User_Course" FromRole="CP_User" ToRole="CP_Course" />
+          <NavigationProperty Name="CP_Duration" Relationship="Self.FK_Duration_User" FromRole="CP_User" ToRole="CP_Duration" />
+          <NavigationProperty Name="CP_Duration1" Relationship="Self.FK_Duration_User1" FromRole="CP_User" ToRole="CP_Duration" />
+          <NavigationProperty Name="CP_Duration2" Relationship="Self.FK_Duration_User2" FromRole="CP_User" ToRole="CP_Duration" />
+          <NavigationProperty Name="CP_User1" Relationship="Self.FK_User_User" FromRole="CP_User" ToRole="CP_User1" />
+          <NavigationProperty Name="CP_User2" Relationship="Self.FK_User_User" FromRole="CP_User1" ToRole="CP_User" />
+          <NavigationProperty Name="CP_User11" Relationship="Self.FK_User_User1" FromRole="CP_User" ToRole="CP_User1" />
+          <NavigationProperty Name="CP_User3" Relationship="Self.FK_User_User1" FromRole="CP_User1" ToRole="CP_User" />
+        </EntityType>
+        <Association Name="FK_Course_Gender">
+          <End Role="CP_Gender" Type="Self.CP_Gender" Multiplicity="1" />
+          <End Role="CP_Course" Type="Self.CP_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_Course">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_User">
+          <End Role="CP_User" Type="Self.CP_User" Multiplicity="1" />
+          <End Role="CP_Course" Type="Self.CP_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_Course">
+              <PropertyRef Name="CreatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_User1">
+          <End Role="CP_User" Type="Self.CP_User" Multiplicity="0..1" />
+          <End Role="CP_Course" Type="Self.CP_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_Course">
+              <PropertyRef Name="ModifiedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Duration_Course">
+          <End Role="CP_Course" Type="Self.CP_Course" Multiplicity="1" />
+          <End Role="CP_Duration" Type="Self.CP_Duration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_Duration">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredCourse_Course">
+          <End Role="CP_Course" Type="Self.CP_Course" Multiplicity="1" />
+          <End Role="CP_RegisteredCourse" Type="Self.CP_RegisteredCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_RegisteredCourse">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Course">
+          <End Role="CP_Course" Type="Self.CP_Course" Multiplicity="0..1" />
+          <End Role="CP_User" Type="Self.CP_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_Course">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_User">
+              <PropertyRef Name="CoursePrivilege" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Duration_User">
+          <End Role="CP_User" Type="Self.CP_User" Multiplicity="1" />
+          <End Role="CP_Duration" Type="Self.CP_Duration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_Duration">
+              <PropertyRef Name="CreatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Duration_User1">
+          <End Role="CP_User" Type="Self.CP_User" Multiplicity="0..1" />
+          <End Role="CP_Duration" Type="Self.CP_Duration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_Duration">
+              <PropertyRef Name="TerminatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Duration_User2">
+          <End Role="CP_User" Type="Self.CP_User" Multiplicity="0..1" />
+          <End Role="CP_Duration" Type="Self.CP_Duration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_Duration">
+              <PropertyRef Name="ModifiedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredCourse_Duration">
+          <End Role="CP_Duration" Type="Self.CP_Duration" Multiplicity="1" />
+          <End Role="CP_RegisteredCourse" Type="Self.CP_RegisteredCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_Duration">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_RegisteredCourse">
+              <PropertyRef Name="DurationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredCourse_Registration">
+          <End Role="CP_Registration" Type="Self.CP_Registration" Multiplicity="1" />
+          <End Role="CP_RegisteredCourse" Type="Self.CP_RegisteredCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_Registration">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_RegisteredCourse">
+              <PropertyRef Name="RegisteredID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredCourse_Result">
+          <End Role="CP_Result" Type="Self.CP_Result" Multiplicity="0..1" />
+          <End Role="CP_RegisteredCourse" Type="Self.CP_RegisteredCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_Result">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_RegisteredCourse">
+              <PropertyRef Name="ResultID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_User">
+          <End Role="CP_User" Type="Self.CP_User" Multiplicity="0..1" />
+          <End Role="CP_User1" Type="Self.CP_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_User1">
+              <PropertyRef Name="CreatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_User1">
+          <End Role="CP_User" Type="Self.CP_User" Multiplicity="0..1" />
+          <End Role="CP_User1" Type="Self.CP_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CP_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CP_User1">
+              <PropertyRef Name="ModifiedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CoursePlatformEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CP_Course" EntityType="Self.CP_Course" />
+          <EntitySet Name="CP_Duration" EntityType="Self.CP_Duration" />
+          <EntitySet Name="CP_Gender" EntityType="Self.CP_Gender" />
+          <EntitySet Name="CP_RegisteredCourse" EntityType="Self.CP_RegisteredCourse" />
+          <EntitySet Name="CP_Registration" EntityType="Self.CP_Registration" />
+          <EntitySet Name="CP_Result" EntityType="Self.CP_Result" />
+          <EntitySet Name="CP_Student" EntityType="Self.CP_Student" />
+          <EntitySet Name="CP_User" EntityType="Self.CP_User" />
+          <AssociationSet Name="FK_Course_Gender" Association="Self.FK_Course_Gender">
+            <End Role="CP_Gender" EntitySet="CP_Gender" />
+            <End Role="CP_Course" EntitySet="CP_Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_User" Association="Self.FK_Course_User">
+            <End Role="CP_User" EntitySet="CP_User" />
+            <End Role="CP_Course" EntitySet="CP_Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_User1" Association="Self.FK_Course_User1">
+            <End Role="CP_User" EntitySet="CP_User" />
+            <End Role="CP_Course" EntitySet="CP_Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Duration_Course" Association="Self.FK_Duration_Course">
+            <End Role="CP_Course" EntitySet="CP_Course" />
+            <End Role="CP_Duration" EntitySet="CP_Duration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredCourse_Course" Association="Self.FK_RegisteredCourse_Course">
+            <End Role="CP_Course" EntitySet="CP_Course" />
+            <End Role="CP_RegisteredCourse" EntitySet="CP_RegisteredCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Course" Association="Self.FK_User_Course">
+            <End Role="CP_Course" EntitySet="CP_Course" />
+            <End Role="CP_User" EntitySet="CP_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Duration_User" Association="Self.FK_Duration_User">
+            <End Role="CP_User" EntitySet="CP_User" />
+            <End Role="CP_Duration" EntitySet="CP_Duration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Duration_User1" Association="Self.FK_Duration_User1">
+            <End Role="CP_User" EntitySet="CP_User" />
+            <End Role="CP_Duration" EntitySet="CP_Duration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Duration_User2" Association="Self.FK_Duration_User2">
+            <End Role="CP_User" EntitySet="CP_User" />
+            <End Role="CP_Duration" EntitySet="CP_Duration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredCourse_Duration" Association="Self.FK_RegisteredCourse_Duration">
+            <End Role="CP_Duration" EntitySet="CP_Duration" />
+            <End Role="CP_RegisteredCourse" EntitySet="CP_RegisteredCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredCourse_Registration" Association="Self.FK_RegisteredCourse_Registration">
+            <End Role="CP_Registration" EntitySet="CP_Registration" />
+            <End Role="CP_RegisteredCourse" EntitySet="CP_RegisteredCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredCourse_Result" Association="Self.FK_RegisteredCourse_Result">
+            <End Role="CP_Result" EntitySet="CP_Result" />
+            <End Role="CP_RegisteredCourse" EntitySet="CP_RegisteredCourse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_User" Association="Self.FK_User_User">
+            <End Role="CP_User" EntitySet="CP_User" />
+            <End Role="CP_User1" EntitySet="CP_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_User1" Association="Self.FK_User_User1">
+            <End Role="CP_User" EntitySet="CP_User" />
+            <End Role="CP_User1" EntitySet="CP_User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CoursePlatformModelStoreContainer" CdmEntityContainer="CoursePlatformEntities">
+          <EntitySetMapping Name="CP_Course">
+            <EntityTypeMapping TypeName="CoursePlatformModel.CP_Course">
+              <MappingFragment StoreEntitySet="CP_Course">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CreatorID" ColumnName="CreatorID" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModifiedID" ColumnName="ModifiedID" />
+                <ScalarProperty Name="ModficationDate" ColumnName="ModficationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CP_Duration">
+            <EntityTypeMapping TypeName="CoursePlatformModel.CP_Duration">
+              <MappingFragment StoreEntitySet="CP_Duration">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="MinCapacity" ColumnName="MinCapacity" />
+                <ScalarProperty Name="MaxCapacity" ColumnName="MaxCapacity" />
+                <ScalarProperty Name="NumberRolled" ColumnName="NumberRolled" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CreatorID" ColumnName="CreatorID" />
+                <ScalarProperty Name="TerminatorID" ColumnName="TerminatorID" />
+                <ScalarProperty Name="SerialFrom" ColumnName="SerialFrom" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModifiedID" ColumnName="ModifiedID" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CP_Gender">
+            <EntityTypeMapping TypeName="CoursePlatformModel.CP_Gender">
+              <MappingFragment StoreEntitySet="CP_Gender">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CP_RegisteredCourse">
+            <EntityTypeMapping TypeName="CoursePlatformModel.CP_RegisteredCourse">
+              <MappingFragment StoreEntitySet="CP_RegisteredCourse">
+                <ScalarProperty Name="RegisteredID" ColumnName="RegisteredID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="DurationID" ColumnName="DurationID" />
+                <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CP_Registration">
+            <EntityTypeMapping TypeName="CoursePlatformModel.CP_Registration">
+              <MappingFragment StoreEntitySet="CP_Registration">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StudentCode" ColumnName="StudentCode" />
+                <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
+                <ScalarProperty Name="NationalID" ColumnName="NationalID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ActivationStatus" ColumnName="ActivationStatus" />
+                <ScalarProperty Name="LevelCode" ColumnName="LevelCode" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="StudentFaculty" ColumnName="StudentFaculty" />
+                <ScalarProperty Name="StudentAddress" ColumnName="StudentAddress" />
+                <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
+                <ScalarProperty Name="StudentSection" ColumnName="StudentSection" />
+                <ScalarProperty Name="LevelName" ColumnName="LevelName" />
+                <ScalarProperty Name="UniversityName" ColumnName="UniversityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CP_Result">
+            <EntityTypeMapping TypeName="CoursePlatformModel.CP_Result">
+              <MappingFragment StoreEntitySet="CP_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CP_Student">
+            <EntityTypeMapping TypeName="CoursePlatformModel.CP_Student">
+              <MappingFragment StoreEntitySet="CP_Student">
+                <ScalarProperty Name="StudentCode" ColumnName="StudentCode" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="StudentFaculty" ColumnName="StudentFaculty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CP_User">
+            <EntityTypeMapping TypeName="CoursePlatformModel.CP_User">
+              <MappingFragment StoreEntitySet="CP_User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CoursePrivilege" ColumnName="CoursePrivilege" />
+                <ScalarProperty Name="CreatorID" ColumnName="CreatorID" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModifiedID" ColumnName="ModifiedID" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

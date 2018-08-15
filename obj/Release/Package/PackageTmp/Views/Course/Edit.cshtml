@@ -1,0 +1,78 @@
+﻿@model CoursePlatform.ViewModels.Course
+@{
+    ViewBag.Title = "تعديل";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+<script src="//cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
+
+<div id="page-wrapper">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">تعديل</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    كورس
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            @using (Html.BeginForm("Edit", "Course", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(model => model.CourseId)
+                                @Html.HiddenFor(model => model.CourseImage)
+                                @Html.HiddenFor(model => model.CreatorId)
+                                @Html.HiddenFor(model => model.CreationDate)
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CourseName)
+                                    @Html.EditorFor(model => model.CourseName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.CourseName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.GenderAllowed)
+                                    @Html.DropDownList("GenderAllowed", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.GenderAllowed, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CourseImage)
+                                    <input type="file" name="Image" id="Image">
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CourseDetails)
+                                    @Html.TextAreaFor(model => model.CourseDetails, new { @class = "form-control", @row = 10 })
+                                    @Html.ValidationMessageFor(model => model.CourseDetails, "", new { @class = "text-danger" })
+                                </div>
+                                <span class="errors text-danger" style="display:block;padding-bottom:15px">
+                                    @ViewBag.ModelErrors
+                                </span>
+                                <button type="submit" class="btn btn-primary btn-block">تعديل</button>
+                            }
+                        </div>
+
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+
+@section scripts{
+    <script>
+        CKEDITOR.replace('CourseDetails', {
+            language: 'ar',
+        });
+    </script>
+
+}

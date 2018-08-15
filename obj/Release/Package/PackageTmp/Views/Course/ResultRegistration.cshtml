@@ -1,0 +1,135 @@
+﻿@model IEnumerable<CoursePlatform.ViewModels.StudentRegistration>
+@{
+    ViewBag.Title = "تسجيل النتيجة";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+@{ 
+    var AcademicYear = DateTime.Now.Year + " / " + DateTime.Now.AddYears(1).Year;
+    var counter = 1;
+}
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">تسجيل النتيجة</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <form action="/Course/ResultRegistration/@ViewBag.CourseId" method="get">
+                <div class="form-group">
+                    @Html.DropDownList("durid", null, "اختر الفترة",htmlAttributes: new { @class = "form-control" ,@style= "width: 80%;display: inline-block"})
+                    <button type="submit" class="btn btn-primary">ظهور</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    النتيجة
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>م</th>
+                                    <th>@Html.DisplayNameFor(model => model.StudentName)</th>
+                                    <th>@Html.DisplayNameFor(model => model.AcademicYear)</th>
+                                    <th>@Html.DisplayNameFor(model => model.NationalId)</th>
+                                    <th>@Html.DisplayNameFor(model => model.DurationSerial)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Result)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="odd gradeX">
+                                        <th>@counter</th>
+                                        <td>@Html.DisplayFor(modelItem => item.StudentName)</td>
+                                        <td>@AcademicYear</td>
+                                        <td>@Html.DisplayFor(modelItem => item.NationalId)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.DurationSerial)</td>
+                                        <td>
+                                            @Html.DropDownListFor(modelItem => item.Result, new SelectList((IEnumerable<CoursePlatform.Models.CP_Result>)ViewBag.Result, "ID", "Name", item.Result), "اختر النتيجة", htmlAttributes: new { @class = "form-control result", @id=item.RegisterId, @style="width:100%" })
+                                        </td>
+                                    </tr>
+                                    counter++;
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable({
+                "oLanguage": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يعثر على أية سجلات",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "ابحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                }
+
+            });
+            $(".result").change(function () {
+                var selectedVal = $(this).find(':selected').val();
+                var selectedText = $(this).find(':selected').text();
+                var courseId = @ViewBag.CourseId;
+                var registerId = $(this).attr('id');
+                if (selectedVal != 0) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Course/ResultRegistration/' + courseId,
+                        data: {
+                            "rid": registerId,
+                            "result": selectedVal
+                        },
+                        dataType: 'text',
+                        success: function (data) {
+
+                        },
+                        complete: function () {
+
+                        },
+                        error: function () {
+                            alert("Error");
+                        }
+                    });
+                }
+               
+            });
+        });
+    </script>
+
+}

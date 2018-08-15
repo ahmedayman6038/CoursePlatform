@@ -1,0 +1,261 @@
+﻿@model CoursePlatform.ViewModels.Tarbea
+@using CoursePlatform.Helper
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        body {
+            direction: rtl;
+        }
+
+        .parent {
+            position: relative;
+            border: 5px double black;
+            width: 100%;
+            height: 650px;
+            outline: 1px solid black;
+            right: -5px;
+        }
+
+        .pimage {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            border: 5px double black;
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            position: absolute;
+            top: 10px;
+            right: 30px;
+        }
+
+        .content1 {
+            position: relative;
+            top: 100px;
+            text-align: center;
+        }
+
+        .header {
+            text-decoration: underline;
+        }
+
+        .duration {
+            font-weight: bold;
+        }
+
+        .content2 {
+            position: relative;
+            right: 50px;
+            top: 100px;
+        }
+
+            .content2 .box {
+                width: 30px;
+                height: 15px;
+                border: 1px solid black;
+                display: inline-block !important;
+            }
+
+          .content2   .w1 {
+                padding-right: 15px !important;
+            }
+
+        .row {
+            height: 30px;
+        }
+
+        .content2 .w2 {
+            padding-right: 200px;
+        }
+
+        .content2 .a2 {
+            padding-right: 20px;
+        }
+
+        .content3 {
+            position: relative;
+            right: 30px;
+            top: 120px;
+        }
+
+            .content3 .box {
+                width: 27px;
+                height: 15px;
+                border: 1px solid black;
+                display: inline-block !important;
+                text-align: center;
+            }
+
+            .content3 .boxs {
+                padding-right: 10px;
+            }
+
+            .content3 .qb {
+                padding-right: 15px;
+            }
+
+            .content3 .ans {
+                border-bottom: 1px dotted black;
+            }
+    </style>
+</head>
+<body>
+    @{ 
+        var image = Request.Url.Scheme + "://" + Request.Url.Authority + Url.Content("~/Content/img/cairo.png");
+        var FromDate = SystemHelper.ToArabicNumber(Model.DurationFrom.ToString("yyyy/MM/dd"));
+        var ToDate = SystemHelper.ToArabicNumber(Model.DurationTo.ToString("yyyy/MM/dd"));
+        var NationalID = SystemHelper.ToArabicNumber(Model.NationalID);
+        var TelephoneNumber = "          ";
+        if (Model.TelephoneNumber != null)
+        {
+            TelephoneNumber = SystemHelper.ToArabicNumber(Model.TelephoneNumber);
+        }
+        var PhoneNumber = SystemHelper.ToArabicNumber(Model.PhoneNumber);
+        var StudentAdress = SystemHelper.ToArabicNumber(Model.Address);
+        var StudentName = Model.StudentName;
+        var StudentFacuty = Model.StudentFacuty;
+        var LevelName = Model.LevelName;
+        var SectionName = Model.Section;
+        var SerialNumber = SystemHelper.ToArabicNumber(Model.SerialNumber.ToString());
+        bool isCairo = Model.StudentUniversity == "جامعة القاهرة" ? true : false;
+    }
+    <div class="parent">
+        <div class="pimage">
+            <p style="padding-top:10px">صورة</p>
+            <p>٤ × ٦</p>
+        </div>
+        <div class="logo">
+            <img src="@image" width="80" height="100" alt="Cairo Logo" />
+        </div>
+        <div class="content1">
+            <h2 class="header">كارت تسجيل طالب لحضور التربية العسكرية</h2>
+            <pre class="duration">تاريخ الدورة : من @FromDate الى : @ToDate</pre>
+        </div>
+        <div class="content2">
+            <div class="row">
+                <div class="box" style="text-align:center;">@if (isCairo) { @Html.Raw("&#10004;") }</div>
+                <p class="w1" style="display:inline-block">جامعة القاهرة</p>
+                <p class="w2" style="display:inline-block">الرقم القومى : </p>
+                <p class="a2" style="display:inline-block">@NationalID</p>
+            </div>
+            <div class="row">
+                <div class="box" style="text-align:center;">@if (!isCairo) { @Html.Raw("&#10004;") }</div>
+                <p class="w1" style="display:inline-block">جامعة اخرى</p>
+                <p class="w2" style="display:inline-block;padding-right:205px">اسم الجامعة : </p>
+                <p class="a2" style="display:inline-block">@if (!isCairo) { @Model.StudentUniversity }</p>
+            </div>
+        </div>
+        <div class="content3">
+            <div class="row">
+                <p class="" style="display:inline-block">رقم البطاقة : </p>
+                <div class="boxs" style="display:inline-block">
+                    <div class="box">@NationalID[13]</div>
+                    <div class="box">@NationalID[12]</div>
+                    <div class="box">@NationalID[11]</div>
+                    <div class="box">@NationalID[10]</div>
+                    <div class="box">@NationalID[9]</div>
+                    <div class="box">@NationalID[8]</div>
+                    <div class="box">@NationalID[7]</div>
+                    <div class="box">@NationalID[6]</div>
+                    <div class="box">@NationalID[5]</div>
+                    <div class="box">@NationalID[4]</div>
+                    <div class="box">@NationalID[3]</div>
+                    <div class="box">@NationalID[2]</div>
+                    <div class="box">@NationalID[1]</div>
+                    <div class="box">@NationalID[0]</div>
+                </div>
+                <p class="qb" style="display:inline-block;">جهة صدورها : </p>
+                <pre class="ans" style="display:inline-block;width:216px"> </pre>
+            </div>
+            <div class="row">
+                <p class="" style="display:inline-block;">الاسم الرباعى : </p>
+                <p class="ans" style="display:inline-block;width:463px;">@StudentName</p>
+                <p class="qb" style="display:inline-block;">الكلية : </p>
+                <p class="ans" style="display:inline-block;width:251px;">@StudentFacuty</p>
+            </div>
+            <div class="row">
+                <p class="" style="display:inline-block">الفرقة : </p>
+                <p class="ans" style="display:inline-block;width:225px">@LevelName</p>
+                <p class="qb" style="display:inline-block;">القسم : </p>
+                <p class="ans" style="display:inline-block;width:225px">@SectionName</p>
+                <p class="qb" style="display:inline-block;">فصيلة الدم : </p>
+                <p class="ans" style="display:inline-block;width:225px">&nbsp;</p>
+            </div>
+            <div class="row" style="padding-top:10px;">
+                <p class="" style="display:inline-block">تاريخ الميلاد : </p>
+                <div class="boxs" style="display:inline-block">
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box" style="margin-right:20px"></div>
+                    <div class="box"></div>
+                    <div class="box" style="margin-right:20px"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                </div>
+                <p class="qb" style="display:inline-block;">جهة الميلاد : </p>
+                <p class="ans" style="display:inline-block;width:380px">&nbsp;</p>
+            </div>
+            <div class="row">
+                <p class="" style="display:inline-block">العنوان اثناء الدراسة : </p>
+                <p class="ans" style="display:inline-block;width:738px">&nbsp;</p>
+            </div>
+            <div class="row">
+                <p class="" style="display:inline-block">العنوان الدائم : </p>
+                <p class="ans" style="display:inline-block;width:778px">@StudentAdress</p>
+            </div>
+            <div class="row" style="padding-top:10px;">
+                <p class="" style="display:inline-block">تليفون المنزل : </p>
+                <div class="boxs" style="display:inline-block">
+                    <div class="box">@TelephoneNumber[9]</div>
+                    <div class="box">@TelephoneNumber[8]</div>
+                    <div class="box">@TelephoneNumber[7]</div>
+                    <div class="box">@TelephoneNumber[6]</div>
+                    <div class="box">@TelephoneNumber[5]</div>
+                    <div class="box">@TelephoneNumber[4]</div>
+                    <div class="box">@TelephoneNumber[3]</div>
+                    <div class="box">@TelephoneNumber[2]</div>
+                    <div class="box">@TelephoneNumber[1]</div>
+                    <div class="box">@TelephoneNumber[0]</div>
+                </div>
+                <p class="qb" style="display:inline-block;">المحمول : </p>
+                <div class="boxs" style="display:inline-block">
+                    <div class="box">@PhoneNumber[10]</div>
+                    <div class="box">@PhoneNumber[9]</div>
+                    <div class="box">@PhoneNumber[8]</div>
+                    <div class="box">@PhoneNumber[7]</div>
+                    <div class="box">@PhoneNumber[6]</div>
+                    <div class="box">@PhoneNumber[5]</div>
+                    <div class="box">@PhoneNumber[4]</div>
+                    <div class="box">@PhoneNumber[3]</div>
+                    <div class="box">@PhoneNumber[2]</div>
+                    <div class="box">@PhoneNumber[1]</div>
+                    <div class="box">@PhoneNumber[0]</div>
+                </div>
+            </div>
+            <div class="row" style="padding-top:20px;">
+                <p class="" style="display:inline-block">تحريرا فى : </p>
+                <p class="" style="display:inline-block;width:365px">&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;/</p>
+                <p class="" style="display:inline-block">توقيع الطالب بخط يقرا</p>
+                <p class="ans" style="display:inline-block;width:300px">&nbsp;</p>
+            </div>
+            <div class="row" style="padding-top:20px">
+                <p class="" style="display:inline-block"></p>
+                <p class="" style="display:inline-block;width:425px"></p>
+                <p class="" style="display:inline-block">الرقم المسلسل : </p>
+                <p class="" style="display:inline-block;padding-right:10px;color:red">@SerialNumber</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

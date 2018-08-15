@@ -1,0 +1,120 @@
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\ApplicationInsights.config
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\roslyn\csc.exe
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\roslyn\System.Collections.Immutable.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\roslyn\System.Reflection.Metadata.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\roslyn\vbc.exe
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\roslyn\VBCSCompiler.exe
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\roslyn\VBCSCompiler.exe.config
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\CoursePlatform.dll.config
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\CoursePlatform.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\CoursePlatform.pdb
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Antlr3.Runtime.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Microsoft.AI.DependencyCollector.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Microsoft.AI.Web.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Microsoft.AI.WindowsServer.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Microsoft.ApplicationInsights.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Microsoft.Web.Infrastructure.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Newtonsoft.Json.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\System.Web.Helpers.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\System.Web.Mvc.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\System.Web.Optimization.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\System.Web.Razor.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\System.Web.WebPages.Deployment.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\System.Web.WebPages.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\System.Web.WebPages.Razor.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\WebGrease.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Microsoft.AI.DependencyCollector.xml
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Microsoft.AI.Web.xml
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Microsoft.AI.WindowsServer.xml
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Microsoft.ApplicationInsights.xml
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\System.Web.Helpers.xml
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\System.Web.Mvc.xml
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\System.Web.Optimization.xml
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\System.Web.Razor.xml
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\System.Web.WebPages.xml
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\System.Web.WebPages.Deployment.xml
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\System.Web.WebPages.Razor.xml
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Antlr3.Runtime.pdb
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\Newtonsoft.Json.xml
+C:\Course Platform\CoursePlatform\CoursePlatform\obj\Debug\CoursePlatform.csprojResolveAssemblyReference.cache
+C:\Course Platform\CoursePlatform\CoursePlatform\obj\Debug\CoursePlatform.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\obj\Debug\CoursePlatform.pdb
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\EntityFramework.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\EntityFramework.SqlServer.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\EntityFramework.xml
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\EntityFramework.SqlServer.xml
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\NReco.PdfGenerator.dll
+C:\Course Platform\CoursePlatform\CoursePlatform\bin\NReco.PdfGenerator.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\ApplicationInsights.config
+E:\Projects\CoursePlatform\CoursePlatform\bin\roslyn\csc.exe
+E:\Projects\CoursePlatform\CoursePlatform\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Projects\CoursePlatform\CoursePlatform\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Projects\CoursePlatform\CoursePlatform\bin\roslyn\System.Collections.Immutable.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\roslyn\System.Reflection.Metadata.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\roslyn\vbc.exe
+E:\Projects\CoursePlatform\CoursePlatform\bin\roslyn\VBCSCompiler.exe
+E:\Projects\CoursePlatform\CoursePlatform\bin\roslyn\VBCSCompiler.exe.config
+E:\Projects\CoursePlatform\CoursePlatform\bin\CoursePlatform.dll.config
+E:\Projects\CoursePlatform\CoursePlatform\bin\CoursePlatform.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\CoursePlatform.pdb
+E:\Projects\CoursePlatform\CoursePlatform\bin\Antlr3.Runtime.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\EntityFramework.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\EntityFramework.SqlServer.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\Microsoft.AI.Agent.Intercept.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\Microsoft.AI.DependencyCollector.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\Microsoft.AI.Web.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\Microsoft.AI.WindowsServer.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\Microsoft.ApplicationInsights.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\Microsoft.Web.Infrastructure.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\Newtonsoft.Json.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\NReco.PdfGenerator.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\System.Web.Helpers.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\System.Web.Mvc.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\System.Web.Optimization.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\System.Web.Razor.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\System.Web.WebPages.Deployment.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\System.Web.WebPages.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\System.Web.WebPages.Razor.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\WebGrease.dll
+E:\Projects\CoursePlatform\CoursePlatform\bin\EntityFramework.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\EntityFramework.SqlServer.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\Microsoft.AI.DependencyCollector.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\Microsoft.AI.Web.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\Microsoft.AI.WindowsServer.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\Microsoft.ApplicationInsights.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\NReco.PdfGenerator.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\System.Web.Helpers.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\System.Web.Mvc.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\System.Web.Razor.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\System.Web.WebPages.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\System.Web.WebPages.Deployment.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\System.Web.WebPages.Razor.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\System.Web.Optimization.xml
+E:\Projects\CoursePlatform\CoursePlatform\bin\Antlr3.Runtime.pdb
+E:\Projects\CoursePlatform\CoursePlatform\bin\Newtonsoft.Json.xml
+E:\Projects\CoursePlatform\CoursePlatform\obj\Debug\CoursePlatform.csprojAssemblyReference.cache
+E:\Projects\CoursePlatform\CoursePlatform\obj\Debug\CoursePlatform.csproj.CoreCompileInputs.cache
+E:\Projects\CoursePlatform\CoursePlatform\obj\Debug\CoursePlatform.csproj.CopyComplete
+E:\Projects\CoursePlatform\CoursePlatform\obj\Debug\CoursePlatform.dll
+E:\Projects\CoursePlatform\CoursePlatform\obj\Debug\CoursePlatform.pdb

@@ -1,0 +1,99 @@
+﻿@model IEnumerable<CoursePlatform.ViewModels.DurationView>
+@using System.Web.Configuration;
+@{
+    ViewBag.Title = ViewBag.Course.Name;
+}
+
+
+<!-- start banner Area -->
+<section class="banner-area relative about-banner" style="background: url('/Content/img/top-banner.jpg') center no-repeat;" id="home" dir="rtl">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white wow fadeInDown">
+                    @ViewBag.Course.Name
+                </h1>
+                <p class="text-white link-nav wow fadeInUp"><a href="/">الرئيسية </a>  <span class="lnr lnr-arrow-left"></span>  <a href=""> @ViewBag.Course.Name</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start course-details Area -->
+<section class="course-details-area pt-120" dir="rtl" style="padding-bottom:100px;">
+    <div class="container">
+        <div class="row animated fadeIn">
+            <div class="col-lg-8 left-contents">
+                <div class="main-image">
+                    @if (ViewBag.Course.Image == null)
+                    {
+                        <img class="img-fluid" src="@Url.Content("~/Content/img/blank.jpg")" alt="">
+                    }
+                    else
+                    {
+                        <img class="img-fluid" src="@Url.Content("~/Uploads/"+ViewBag.Course.Image)" alt="">
+                    }
+                </div>
+                <div class="jq-tab-wrapper" id="horizontalTab">
+                    <div class="jq-tab-menu" style="font-size:15px;">
+                        <div class="jq-tab-title active" data-tab="1">تفاصيل</div>
+                        <div class="jq-tab-title" data-tab="2">الفترات المتاحة</div>
+                    </div>
+                    <div class="jq-tab-content-wrapper">
+                        <div class="jq-tab-content active" style="text-align:right;color:black" data-tab="1">
+                            @Html.Raw(ViewBag.Course.Details)
+                        </div>
+                        <div class="jq-tab-content" data-tab="2">
+                            <ul class="course-list ulc">
+                                @foreach (var dur in Model)
+                                {
+                                    <li class="justify-content-between d-flex" style="color:black">
+                                        <p class="mt-2">@dur.DurationName</p>
+                                        <a class="primary-btn text-uppercase" href="/Student/CourseRegistration/@ViewBag.Course.ID?durid=@dur.DurationID">تسجيل فى الدورة</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 right-contents">
+                @if (CoursePlatform.Helper.SystemHelper.GetCourseObjectId(new CoursePlatform.ViewModels.Tarbea()) == ViewBag.Course.ID)
+                {
+                    <ul style="list-style:none;padding: 0;">
+                        <li>
+                            <a class="justify-content-between d-flex" href="#">
+                                <p>عدد الدورات المتاحة </p>
+                                <span>@Model.Count()</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="justify-content-between d-flex" href="#">
+                                <p>مواعيد العمل </p>
+                                <span>من 7:30 ص الى 2:00 م</span>
+                            </a>
+                        </li>
+                    </ul>
+                }
+                @if (ViewBag.Rid == null)
+                {
+                    <a href="/Student/CourseRegistration/@ViewBag.Course.ID" class="primary-btn text-uppercase" style="background-color:#f7631b;">تسجيل</a>
+                }
+                else
+                {
+                    if (ViewBag.ResultName == "راسب")
+                    {
+                        <a href="/Student/RemoveRegistration/@ViewBag.Course.ID?rid=@ViewBag.Rid" class="primary-btn text-uppercase" style="background-color:#f7631b;">الغاء التسجيل</a>
+                    }
+                    <a href="/Student/DownloadRegistrationForm/@ViewBag.Course.ID" class="primary-btn text-uppercase">طباعة استمارة التسجيل</a>
+                    if (ViewBag.ResultName != null)
+                    {
+                        <a href="/Student/DownloadResultForm/@ViewBag.Course.ID?rid=@ViewBag.Rid" class="primary-btn text-uppercase">طباعة النتيجة</a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End course-details Area -->

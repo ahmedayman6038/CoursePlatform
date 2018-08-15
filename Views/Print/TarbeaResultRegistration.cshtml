@@ -1,0 +1,129 @@
+﻿@model IList<CoursePlatform.ViewModels.StudentRegistration>
+@using CoursePlatform.Helper;
+@using System.Web.Configuration;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        body {
+            direction: rtl;
+        }
+
+        .parent {
+            border: 5px double black;
+            height: auto;
+            outline: 1px solid black;
+            min-height: 1290px;
+        }
+
+        .heading {
+            float: right;
+        }
+
+        .content1 {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .doubleUnderline {
+            border-bottom: double 3px;
+        }
+
+        .rhead {
+            line-height: 2px;
+            text-align: center;
+            margin-right: 20px;
+        }
+
+        .mhead {
+            line-height: 10px;
+        }
+
+
+
+        .content2 {
+            padding: 0px 30px;
+        }
+
+        .rtable {
+            width: 100%;
+            min-height: 800px;
+        }
+
+            .rtable tr td {
+                text-align: center;
+            }
+
+        .content3 {
+            padding: 30px;
+            height: 120px;
+        }
+
+        .fhead {
+            line-height: 10px;
+        }
+    </style>
+</head>
+<body>
+    @{
+        var AcademicYear = DateTime.Now.Year + " / " + DateTime.Now.AddYears(1).Year;
+        var counter = 1;
+        var FacultyName = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        var FromDate = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        var ToDate = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        if (Model.Count > 0)
+        {
+            FacultyName = Model[0].FacultyName;
+            FromDate = SystemHelper.ToArabicNumber(Model[0].DurationFrom.ToString("yyyy/MM/dd"));
+            ToDate = SystemHelper.ToArabicNumber(Model[0].DurationTo.ToString("yyyy/MM/dd"));
+        }
+    }
+    <div class="parent">
+        <div class="heading">
+            <h4 class="rhead"><span class="doubleUnderline">وزارة الدفاع</span></h4>
+            <h4 class="rhead"><span class="doubleUnderline">ادارة التربية العسكرية جامعة القاهرة</span></h4>
+        </div>
+        <div class="content1">
+            <h2 class="mhead">اسماء طلبة ( @Html.Raw(FacultyName) ) الذين ادوا مادة التربية العسكرية بنجاح</h2>
+            <h2 class="mhead">فى الفترة من @Html.Raw(FromDate) الى @Html.Raw(ToDate)</h2>
+        </div>
+        <div class="content2">
+            <table border="4" class="rtable">
+                <tr>
+                    <th>م</th>
+                    <th>الاسم</th>
+                    <th>السنة الدراسية</th>
+                    <th>الرقم القومى</th>
+                    <th>مسلسل الدورة</th>
+                    <th>النتيجة</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@SystemHelper.ToArabicNumber(counter.ToString())</td>
+                        <td>@item.StudentName</td>
+                        <td>@SystemHelper.ToArabicNumber(AcademicYear)</td>
+                        <td>@SystemHelper.ToArabicNumber(item.NationalId)</td>
+                        <td>@SystemHelper.ToArabicNumber(item.DurationSerial.ToString())</td>
+                        <td>@item.ResultName</td>
+                    </tr>
+                    counter++;
+                }
+            </table>
+        </div>
+        <div class="content3">
+            <div style="float:left;width:240px">
+                <h4 class="fhead" style="word-spacing:2px">التوقيع (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</h4>
+                <h4 class="fhead" style="word-spacing:25px;">عقيد / @WebConfigurationManager.AppSettings["ColonelName"]</h4>
+                <h4 class="fhead" style="word-spacing:2px">مدير ادارة التربية العسكرية جامعة القاهرة</h4>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+﻿@model CoursePlatform.ViewModels.StudentResult
+@using CoursePlatform.Helper
+@using System.Web.Configuration;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        body {
+            direction: rtl;
+        }
+
+        .parent {
+            border: 5px double black;
+            height: auto;
+            outline: 1px solid black;
+            min-height: 1290px;
+        }
+
+        .heading {
+            float: right;
+        }
+
+        .content1 {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+
+        .rhead {
+            line-height: 2px;
+            margin-right: 20px;
+            text-decoration: underline;
+        }
+
+        .mhead {
+            text-decoration: underline;
+        }
+
+        .content2 {
+            padding: 0px 50px;
+        }
+
+
+        .content3 {
+            padding: 0px 60px;
+        }
+
+        .rtable {
+            width: 100%;
+            min-height: 800px;
+            font-size: 20px;
+        }
+
+            .rtable tr td {
+                text-align: center;
+            }
+
+        .content4 {
+            padding-right: 120px;
+            padding-top: 60px;
+        }
+
+        .content5 {
+            padding: 20px 30px;
+            height: 120px;
+        }
+
+        .fhead {
+            line-height: 10px;
+        }
+    </style>
+</head>
+<body>
+    @{
+
+        var CurrentDate = SystemHelper.ToArabicNumber(DateTime.Now.ToString("yyyy/MM/dd"));
+        var FromDate = SystemHelper.ToArabicNumber(Model.DurationFrom.ToString("yyyy/MM/dd"));
+        var ToDate = SystemHelper.ToArabicNumber(Model.DurationTo.ToString("yyyy/MM/dd"));
+        var StudentName = Model.StudentName;
+        var StudentFacuty = Model.StudentFaculty;
+        var LevelName = Model.StudentLevel;
+        var Number = SystemHelper.ToArabicNumber("1");
+    }
+    <div class="parent">
+        <div class="heading">
+            <h4 class="rhead">التربية العسكرية جامعة القاهرة</h4>
+            <h4 class="rhead">التاريخ @CurrentDate</h4>
+        </div>
+        <div class="content1">
+            <h2 class="mhead style=" word-spacing:2px"">الى / مدير شئون التعليم والطلاب بكلية ( @StudentFacuty ) </h2>
+        </div>
+        <div class="content2">
+            <h3 style="word-spacing:2px">تحية طيبة وبعد ,</h3>
+            <h3 style="word-spacing:2px">نفيد علم سيادتكم بان المذكور بعد حضر دورة تربية عسكرية </h3>
+            <h3 style="word-spacing:2px"> فى الفترة من @FromDate الى @ToDate وقد اداها بنجاح </h3>
+        </div>
+        <div class="content3">
+            <table border="4" class="rtable" cellpadding="8">
+                <tr>
+                    <th>م</th>
+                    <th>الاسم</th>
+                    <th>الفرقة</th>
+                </tr>
+                <tr>
+                    <td>@Number</td>
+                    <td>@StudentName</td>
+                    <td>@LevelName</td>
+                </tr>
+            </table>
+        </div>
+        <div class="content4">
+            <h2 style="word-spacing:2px">وتفضلوا بقبول وافر التحية ,,,,,</h2>
+        </div>
+        <div class="content5">
+            <div style="float:left;width:300px">
+                <h3 class="fhead" style="word-spacing:2px">التوقيع (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</h3>
+                <h3 class="fhead" style="word-spacing:25px;">عقيد / @WebConfigurationManager.AppSettings["ColonelName"]</h3>
+                <h3 class="fhead" style="word-spacing:2px">مدير ادارة التربية العسكرية جامعة القاهرة</h3>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
