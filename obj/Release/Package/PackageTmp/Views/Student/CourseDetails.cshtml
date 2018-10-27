@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="col-lg-4 right-contents">
-                @if (CKESWORK.Helper.SystemHelper.GetCourseObjectId(new CKESWORK.ViewModels.Tarbea()) == ViewBag.Course.ID)
+                @if (CoursePlatform.Helper.SystemHelper.GetCourseObjectId(new CoursePlatform.ViewModels.Tarbea()) == ViewBag.Course.ID)
                 {
                     <ul style="list-style:none;padding: 0;">
                         <li>
@@ -82,9 +82,12 @@
                 }
                 else
                 {
-                    <a href="/Student/RemoveRegistration/@ViewBag.Course.ID?rid=@ViewBag.Rid" class="primary-btn text-uppercase" style="background-color:#f7631b;">الغاء التسجيل</a>
+                    if (ViewBag.ResultName == "راسب")
+                    {
+                        <a href="/Student/RemoveRegistration/@ViewBag.Course.ID?rid=@ViewBag.Rid" class="primary-btn text-uppercase" style="background-color:#f7631b;">الغاء التسجيل</a>
+                    }
                     <a href="/Student/DownloadRegistrationForm/@ViewBag.Course.ID" class="primary-btn text-uppercase">طباعة استمارة التسجيل</a>
-                    if (ViewBag.ResultId != null)
+                    if (ViewBag.ResultName != null)
                     {
                         <a href="/Student/DownloadResultForm/@ViewBag.Course.ID?rid=@ViewBag.Rid" class="primary-btn text-uppercase">طباعة النتيجة</a>
                     }

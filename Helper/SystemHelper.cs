@@ -101,7 +101,7 @@ namespace CoursePlatform.Helper
         public static dynamic GetCourseObject(int CourseId)
         {
             dynamic course;
-            if (MvcApplication.courses.TryGetValue(CourseId,out course))
+            if (MvcApplication.courses.TryGetValue(CourseId, out course))
             {
                 return course;
             }
